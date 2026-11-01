@@ -1,15 +1,23 @@
 import requests
 
-url = "https://testx3roxr.vercel.app/"
+base_url = "https://testx3roxr.vercel.app/"
 
-try:
-    response = requests.get(url, timeout=30)
+urls = [
+    base_url,
+    base_url + "hello"
+]
 
-    print("URL:", url)
-    print("Status Code:", response.status_code)
-    print("Response Headers:", response.headers)
-    print("\nResponse Body:")
-    print(response.text)
+for url in urls:
+    print("\n" + "=" * 80)
+    print("Fetching URL:", url)
 
-except requests.exceptions.RequestException as e:
-    print("Request failed:", e)
+    try:
+        response = requests.get(url, timeout=30)
+
+        print("Status Code:", response.status_code)
+        print("Response Headers:", response.headers)
+        print("\nResponse Body:")
+        print(response.text)
+
+    except requests.exceptions.RequestException as e:
+        print("Request failed:", e)
